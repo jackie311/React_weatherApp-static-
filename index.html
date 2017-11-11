@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello React</title>
+	<link href="https://fonts.googleapis.com/css?family=Lato:100,400,700" rel="stylesheet">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.min.js"></script>
+	<script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+</head>
+
+<style>
+	/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+	html, body, div, span, applet, object, iframe,
+	h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+	a, abbr, acronym, address, big, cite, code,
+	del, dfn, em, img, ins, kbd, q, s, samp,
+	small, strike, strong, sub, sup, tt, var,
+	b, u, i, center,
+	dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend,
+	table, caption, tbody, tfoot, thead, tr, th, td,
+	article, aside, canvas, details, embed,
+	figure, figcaption, footer, header, hgroup,
+	menu, nav, output, ruby, section, summary,
+	time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline; }
+	
+	/* HTML5 display-role reset for older browsers */
+	article, aside, details, figcaption, figure,
+	footer, header, hgroup, menu, nav, section {
+		display: block; }
+	
+	body {
+		line-height: 1; }
+	
+	ol, ul {
+		list-style: none; }
+	
+	blockquote, q {
+		quotes: none; }
+	
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: '';
+		content: none; }
+	
+	table {
+		border-collapse: collapse;
+		border-spacing: 0; }
+	
+	/* Prevents iPhone from resizing in landscape mode  */
+	html {
+		-webkit-text-size-adjust: none; }
+	
+	/*  apply a natural box layout model to all elements  */
+	* {
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box; }
+	
+	/* BODY  */
+	body {
+		font-size: 16px;
+		font-family: 'Lato', sans-serif;
+		font-weight: 400;
+		color: #666;
+		background-color: #fff; }
+	
+	div#wrapper {
+		height: 100vh;
+		position: relative;
+		background: linear-gradient(#f3f6f9 0%, #d1ddeb 100%); }
+	
+	/* HEADER  */
+	header {
+		background-color: #1a9835;
+		padding: .5rem 0 .5rem 2%; }
+	
+	header h1, header h2 {
+		color: white; }
+	
+	header h1 {
+		font-size: 1.5rem;
+		font-weight: 700; }
+	
+	header h2 {
+		font-size: .75rem;
+		font-weight: 400;
+		padding-top: .2rem; }
+	
+	header figure {
+		float: right;
+		width: 80px;
+		padding-right: 2%; }
+	
+	header figure img {
+		width: 100%; }
+	
+	nav {
+		background-color: #1f69be;
+		padding: 10px 2%; }
+	nav input {
+		width: 100px;
+		padding: 5px 0 5px 10px;
+		border: 1px solid #fff;
+		border-radius: 5px;
+		background-color: rgba(255, 255, 255, 0.5); }
+	nav button {
+		border: 1px solid #fff;
+		background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, white 60%, rgba(255, 255, 255, 0.6) 100%);
+		border-radius: 5px;
+		padding: 5px 10px;
+		margin-left: 4%; }
+	
+	/*end nav*/
+	/* MAIN  */
+	main {
+		min-height: 5em; }
+	main #location {
+		margin-top: 3rem;
+		text-align: center;
+		font-size: 1.2rem;
+		font-weight: 700;
+		color: #1f69be; }
+	main #weather {
+		margin-top: .5rem;
+		text-align: center;
+		font-size: .8rem;
+		font-weight: 400; }
+	main #temperature {
+		margin-top: .75rem;
+		text-align: center;
+		font-size: 5rem;
+		font-weight: 100;
+		color: #1f69be; }
+	main #desc {
+		margin-top: .75rem;
+		text-align: center;
+		font-size: .9rem;
+		font-weight: 400;
+		padding: 4%; }
+	main #right {
+		margin-top: 2rem;
+		padding: 0 1rem; }
+	main #right img {
+		width: 25px; }
+	main #right .item {
+		border-bottom: 1px solid rgba(31, 105, 190, 0.2);
+		padding-top: .6rem;
+		display: flex;
+		display: -ms-flexbox;
+		flex-direction: row;
+		-ms-flex-direction: row;
+		flex-wrap: nowrap;
+		align-items: center; }
+	main #right .item span:nth-child(1) {
+		flex-basis: 40%;
+		-ms-flex: 1 1 40%; }
+	main #right div span:nth-child(2) {
+		flex-grow: 1; }
+	main #right div span:nth-child(3) {
+		flex-grow: 1; }
+	main #right div span:nth-child(4) {
+		flex-grow: 1; }
+	
+	/*  FOOTER  */
+	footer {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		text-align: center;
+		padding: 1em;
+		background-color: #1a9835;
+		color: #fff;
+		font-size: .9rem; }
+	
+	/* OTHER */
+	div.keepOpen {
+		clear: both; }
+	
+	@media only screen and (min-width: 480px) {
+		#left, #right {
+			float: left;
+			width: 50%; } }
+	@media only screen and (min-width: 800px) {
+		div#wrapper {
+			max-width: 800px;
+			margin: 3rem auto 0 auto;
+			border: 1px solid #666;
+			height: auto;
+			box-shadow: 5px 5px 10px #999; }
+		
+		footer {
+			clear: both;
+			position: relative; } }
+</style>
+
+<body>
+	<div id="app"></div>
+	
+	<script type="text/babel">
+		var root = document.querySelector('#app');
+		// hard coded data object for left and right part
+		// in real, these should be kept inside some container
+		// components, pass down to its child comps that need these data
+		const condition = {
+			city : 'Brisbane, Australia',
+			weather: 'Clear',
+			temp: '27.5c',
+			desc: 'Partly cloudy, High 27C. Winds NNE at 15 to 30 km/h.'
+		}
+		const days = [
+			{weekday:'Sat', high:28, low:19, icon_url:'http://icons.wxug.com/i/c/k/clear.gif'},
+			{weekday:'Sun', high:27, low:20, icon_url:'http://icons.wxug.com/i/c/k/clear.gif'},
+			{weekday:'Mon', high:28, low:19, icon_url:'http://icons.wxug.com/i/c/k/clear.gif'},
+			{weekday:'Tue', high:27, low:20, icon_url:'http://icons.wxug.com/i/c/k/clear.gif'},
+		]
+		
+		// start breaking down UI to some functional comps
+		// first functional (presentational) comp to show pure text
+		function Header() {
+			return (
+				<header>
+					<h1>My Weather Channel powered by React</h1>
+					<h2>JSON data from the Weather Underground</h2>
+				</header>
+			)
+		}
+		
+		// represent left part, backed by 'condition' object
+		// hard coded before
+		function CityCondition(props) {
+			// ES6 destructing to extract props obj to individual variable
+			const {city, weather, temp, desc} = props;
+			return (
+				<div>
+					<div id="location">{city}</div>
+					<div id="weather">{weather}</div>
+					<div id="temperature">{temp}</div>
+					<div id="desc">{desc}</div>
+				</div>
+			)
+		}
+		
+		// represent each day row in right forecast area
+		// don't be afraid of breaking down to more smaller comps
+		function DailyItem(props) {
+			const day = props.day;
+			return (
+				<div className="item">
+					<span>{day.weekday}</span>
+					<span>
+						<img src={day.icon_url} />
+					</span>
+					<span>{day.high}</span>
+					<span>{day.low}</span>
+				</div>
+			)
+		}
+		// represent the whole right section backed by 'days' array
+		// hard coded before, each item in the array will be further
+		// passed to <DailyItem />. It's real power of React and
+		// recommended as good practices
+		function Forecaster(props) {
+			const {days} = props;
+			const day1 = days[0], day2 = days[1], day3 = days[2], day4 = days[3];
+			return (
+				<div>
+					<DailyItem day={day1} />
+					<DailyItem day={day2} />
+					<DailyItem day={day3} />
+					<DailyItem day={day4} />
+				</div>
+			)
+		}
+		
+		function Footer() {
+			return (
+				<footer>
+					<p>Fullstack Web Dev 101</p>
+				</footer>
+			)
+		}
+		
+		// served as layout component to wire up each functional comps
+		// in a proper hierarchy (things like <main> <section> to wrap
+		// these comps defined before)
+		function App() {
+			return (
+					<div id="wrapper">
+						<Header />
+						<main>
+							<section id="left">
+								{/*ES6 spread, handy way to spread each field in 'condition' obj*/}
+								{/*as corresponding prop to <CityCondition/> */}
+								{/*provided field name is the same */}
+								<CityCondition {...condition} />
+							</section>
+							<section id="right">
+								<Forecaster days={days} />
+							</section>
+						</main>
+						<Footer />
+					</div>
+			)
+		}
+	 
+	 // pass the whole App comp to render, magic happening~
+   ReactDOM.render(<App />, root)
+	</script>
+</body>
+</html>
